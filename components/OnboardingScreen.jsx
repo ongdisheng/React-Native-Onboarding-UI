@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import React from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
 import Lottie from 'lottie-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
@@ -20,9 +21,17 @@ const styles = StyleSheet.create({
 })
 
 const OnboardingScreen = () => {
+  const navigation = useNavigation()
+
+  const handleDone = () => {
+    navigation.navigate('Home')
+  }
+
   return (
     <View style={styles.container}>
       <Onboarding
+        onDone={handleDone}
+        onSkip={handleDone}
         containerStyles={{paddingHorizontal: 15}}
         pages={[
           {
